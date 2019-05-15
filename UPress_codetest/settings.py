@@ -80,6 +80,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'UPress_codetest.wsgi.application'
 
 
