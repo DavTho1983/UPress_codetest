@@ -1,14 +1,14 @@
 from rest_framework import generics
 
 from .models import Headline
-from .serializers import ResultSerializer
+from .serializers import HeadlineSerializer
 
 # Create your views here.
-class ResultAPIListView(generics.ListAPIView):
+class HeadlineAPIListView(generics.ListAPIView):
     queryset = Headline.objects.all()
-    serializer_class = ResultSerializer
+    serializer_class = HeadlineSerializer
 
 
-class ResultAPIID(generics.RetrieveAPIView):
+class HeadlineAPIID(generics.RetrieveAPIView):
     queryset = Headline.objects.all()
-    serializer_class = ResultSerializer
+    serializer_class = HeadlineSerializer
