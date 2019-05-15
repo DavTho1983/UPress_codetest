@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+try:
+    from . import local_settings
+except ImportError:
+    pass
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9o76k6(6fg9!k12vg+rj5rf$e4!q4#2h^7+i5@%f9b6249n7+2'
+SECRET_KEY = local_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +47,8 @@ INSTALLED_APPS = [
     "django_celery_results",
     "django_celery_beat",
     "rest_framework",
-    'core'
+    'core',
+    'sarcasm'
 ]
 
 MIDDLEWARE = [
@@ -81,8 +88,12 @@ WSGI_APPLICATION = 'UPress_codetest.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'upressdb',
+        'USER': 'postgres',
+        'PASSWORD': local_settings.POSTGRES_PASSWORD,
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -129,3 +140,7 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
+
+FIXTURE_DIRS = []
+
+SARCASM_DATA_URL = os.path.join(BASE_DIR, 'sarcasm\management\commands\data')

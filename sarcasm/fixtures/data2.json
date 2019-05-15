@@ -1,0 +1,20 @@
+[
+  {
+    "model": "sarcasm.headline",
+    "pk": 1,
+    "fields": {
+      "article_link": "https://foobar.com",
+      "headline": "Test",
+      "is_sarcastic": 1
+    }
+  },
+  {
+    "model": "sarcasm.headline",
+    "pk": 2,
+    "fields": {
+      "article_link": "https://foobar.com",
+      "headline": "Test",
+      "is_sarcastic": 1
+    }
+  }
+]
